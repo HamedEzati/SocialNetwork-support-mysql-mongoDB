@@ -18,3 +18,63 @@ INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 ```
 ## API EndPoints
+
+
+### signup
+http://localhost:8080/api/auth/signup
+```bash
+body:
+{
+"username":"your username",
+"email":"your email",
+"password":"your password"
+}
+```
+### signin
+http://localhost:8080/api/auth/signin
+```bash
+body:
+{
+"username":"your username",
+"password":"your password"
+}
+
+response:
+Authorization security key
+```
+### send post
+http://localhost:8080/api/test/sendpost
+```bash
+
+body:
+{
+"title":"post title",
+"description":"post description"
+}
+
+header:
+key:Authorization  value:Bearer security key
+```
+### send comment
+http://localhost:8080/api/test/sendcomment
+```bash
+body:
+{
+"postId":"post id",
+"text":"comment text"
+}
+
+header:
+key:Authorization  value:Bearer security key
+```
+### following
+http://localhost:8080/api/test/following
+```bash
+body:
+{
+    "username":"username to follow"
+}
+
+header:
+key:Authorization  value:Bearer security key
+```
