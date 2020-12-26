@@ -1,6 +1,10 @@
 # SocialNetwork-support-mysql-mongoDB
 this project support two database.
 you can change database in properties.
+* Mysql
+* MongoDB
+* jwt
+* MapStruct
 ## Requirements
 MongoDB:
 We also need to add some rows into roles collection before assigning any role to User. Run following MongoDB insert statements:
