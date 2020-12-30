@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/api/test")
 public class FollowingController {
@@ -28,13 +30,13 @@ public class FollowingController {
     FollowingMapperImpl followingMapper = new FollowingMapperImpl();
     @PostMapping("/following")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> following(@RequestBody FollowingVm followingVm, @RequestHeader String authorization){
+    public ResponseEntity<?> following(@RequestBody FollowingVm followingVm, @RequestHeader String authorization, HttpSession session){
         FollowingDto followingDto = followingMapper.followingVmToFollowingDto(followingVm);
         if(mysqldb){
-            return followingServiceMysql.following(followingDto,authorization);
+            return followingServiceMysql.following(followingDto,authorization,session);
         }
         if(mongodb){
-            return followingServiceMongo.following(followingDto,authorization);
+            return followingServiceMongo.following(followingDto,authorization,session);
         }
         return ResponseEntity
                 .badRequest()

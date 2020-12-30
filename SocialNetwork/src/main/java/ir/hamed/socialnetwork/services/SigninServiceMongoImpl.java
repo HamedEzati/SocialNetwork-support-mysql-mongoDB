@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class SigninServiceMongoImpl implements SigninService {
     PasswordEncoder encoder;
 
     @Override
-    public ResponseEntity<?> signinUser(UserDto userDto) {
+    public ResponseEntity<?> signinUser(UserDto userDto, HttpServletRequest request) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -39,6 +40,8 @@ public class SigninServiceMongoImpl implements SigninService {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+
+        request.getSession().setAttribute("username",userDto.getUsername());
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),

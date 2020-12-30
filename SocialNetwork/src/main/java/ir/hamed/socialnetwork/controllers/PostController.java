@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/api/test")
 public class PostController {
@@ -30,13 +32,13 @@ public class PostController {
 
     @PostMapping("/sendpost")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> createpost(@RequestBody PostVm postVm, @RequestHeader String authorization){
+    public ResponseEntity<?> createpost(@RequestBody PostVm postVm, @RequestHeader String authorization, HttpSession session){
         PostDto postDto = postMapper.PostVmToPostDto(postVm);
         if(mysqldb){
-            return postServiceMysql.sendPost(postDto,authorization);
+            return postServiceMysql.sendPost(postDto,authorization,session);
         }
         if(mongodb){
-            return postServiceMongo.sendPost(postDto,authorization);
+            return postServiceMongo.sendPost(postDto,authorization,session);
         }
         return ResponseEntity
                 .badRequest()

@@ -4,6 +4,8 @@ import ir.hamed.socialnetwork.models.dtu.FollowingDto;
 import ir.hamed.socialnetwork.models.entity.mongo.Following;
 import org.springframework.http.ResponseEntity;
 
+import javax.servlet.http.HttpSession;
+
 public interface FollowingService {
-    public ResponseEntity<?> following(FollowingDto followingDto, String authorization);
+    public ResponseEntity<?> following(FollowingDto followingDto, String authorization, HttpSession session);
 }

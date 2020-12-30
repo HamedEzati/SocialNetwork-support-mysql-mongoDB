@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -50,13 +52,13 @@ public class AuthController {
 	UserMapperImpl userMapper = new UserMapperImpl();
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@RequestBody UserVm userVm) {
+	public ResponseEntity<?> authenticateUser(@RequestBody UserVm userVm, HttpServletRequest request) {
 		UserDto userDto = userMapper.UserVmToUserDto(userVm);
 		if (mysqldb){
-			return signinServiceMysql.signinUser(userDto);
+			return signinServiceMysql.signinUser(userDto,request);
 		}
 		if (mongodb){
-			return signinServiceMongo.signinUser(userDto);
+			return signinServiceMongo.signinUser(userDto,request);
 		}
 		return ResponseEntity
 				.badRequest()

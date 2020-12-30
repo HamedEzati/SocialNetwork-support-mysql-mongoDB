@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class FollowingServiceMysqlImpl implements FollowingService {
     @Autowired(required = false)
@@ -24,8 +26,16 @@ public class FollowingServiceMysqlImpl implements FollowingService {
     FollowingMapperImpl followingMapper = new FollowingMapperImpl();
 
     @Override
-    public ResponseEntity<?> following(FollowingDto followingDto, String authorization) {
-        String username = jwtUtilsMysql.getUserNameFromJwtToken(authorization.substring(7));
+    public ResponseEntity<?> following(FollowingDto followingDto, String authorization, HttpSession session) {
+
+        String username =(String) session.getAttribute("username");
+        if (username == null){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: session not exist!"));
+        }
+        System.out.println( "session: " + username );
+
         UserMysql user = userMysqlRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Error: user is not found."));
         if(!userMysqlRepository.existsByUsername(followingDto.getUsername())){
             return ResponseEntity
@@ -35,8 +45,10 @@ public class FollowingServiceMysqlImpl implements FollowingService {
         FollowingMysql followingMysql = followingMapper.followingDtoToFollowingMysql(followingDto);
         followingMysql.setUserMysql(user);
         FollowingMysql newfollowingMysql = followingMysqlRepository.save(followingMysql);
+
         user.setNewFollowing(newfollowingMysql);
         userMysqlRepository.save(user);
+
         return ResponseEntity.ok(new MessageResponse("following: "+ followingDto.getUsername()));
     }
 

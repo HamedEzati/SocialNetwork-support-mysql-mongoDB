@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/api/test")
 public class CommentController {
@@ -38,13 +40,13 @@ public class CommentController {
 
     @PostMapping("/sendcomment")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> createpost(@RequestBody CommentVm commentVm, @RequestHeader String authorization){
+    public ResponseEntity<?> createpost(@RequestBody CommentVm commentVm, @RequestHeader String authorization, HttpSession session){
         CommentDto commentDto = commentMapper.commentVmToCommentDto(commentVm);
         if(mysqldb){
-            return commentServiceMysql.sendComment(commentDto,authorization);
+            return commentServiceMysql.sendComment(commentDto,authorization,session);
         }
         if(mongodb){
-            return commentServiceMongo.sendComment(commentDto,authorization);
+            return commentServiceMongo.sendComment(commentDto,authorization,session);
         }
         return ResponseEntity
                 .badRequest()

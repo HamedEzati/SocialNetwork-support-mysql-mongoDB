@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -19,7 +20,16 @@ public class CommentServiceMongoImpl implements CommentService {
     @Autowired(required = false)
     UserMongoRepository userMongoRepository;
     @Override
-    public ResponseEntity<?> sendComment(CommentDto commentDto, String authorization) {
+    public ResponseEntity<?> sendComment(CommentDto commentDto, String authorization, HttpSession session) {
+
+        String username =(String) session.getAttribute("username");
+        if (username == null){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: session not exist!"));
+        }
+        System.out.println( "session: " + username );
+
         Comment comment = new Comment(commentDto.getPostId(),commentDto.getText());
 
         List<User> users = userMongoRepository.findAll();
