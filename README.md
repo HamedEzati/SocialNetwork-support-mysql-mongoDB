@@ -1,5 +1,5 @@
 # SocialNetwork-support-mysql-mongoDB
-this project support two database.
+This project support two database.
 you can change database in properties.
 * Mysql
 * MongoDB
