@@ -1,8 +1,12 @@
 # SocialNetwork-support-mysql-mongoDB
 this project support two database.
 you can change database in properties.
-## requirements
-mongoDB:
+* Mysql
+* MongoDB
+* jwt
+* MapStruct
+## Requirements
+MongoDB:
 We also need to add some rows into roles collection before assigning any role to User. Run following MongoDB insert statements:
 ```bash
 db.roles.insertMany([
@@ -11,7 +15,7 @@ db.roles.insertMany([
    { name: "ROLE_ADMIN" },
 ])
 ```
-mysql:
+Mysql:
 ```bash
 INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
@@ -20,7 +24,7 @@ INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 ## API EndPoints
 
 
-### signup
+### Signup
 http://localhost:8080/api/auth/signup
 ```bash
 body:
@@ -30,7 +34,7 @@ body:
 "password":"your password"
 }
 ```
-### signin
+### Signin
 http://localhost:8080/api/auth/signin
 ```bash
 body:
@@ -42,7 +46,7 @@ body:
 response:
 Authorization security key
 ```
-### send post
+### Send post
 http://localhost:8080/api/test/sendpost
 ```bash
 
@@ -55,7 +59,7 @@ body:
 header:
 key:Authorization  value:Bearer security key
 ```
-### send comment
+### Send comment
 http://localhost:8080/api/test/sendcomment
 ```bash
 body:
@@ -67,7 +71,7 @@ body:
 header:
 key:Authorization  value:Bearer security key
 ```
-### following
+### Following
 http://localhost:8080/api/test/following
 ```bash
 body:
