@@ -84,3 +84,6 @@ body:
 header:
 key:Authorization  value:Bearer security key
 ```
+## notice
+Session timeout set 1 Minutes.
+You can change it in properties file.
