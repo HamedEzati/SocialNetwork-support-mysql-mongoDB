@@ -4,9 +4,9 @@ import ir.hamed.socialnetwork.models.dtu.UserDto;
 import ir.hamed.socialnetwork.models.entity.mongo.User;
 import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
 import ir.hamed.socialnetwork.models.vm.UserVm;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -28,4 +28,17 @@ public interface UserMapper {
             @Mapping(target="password", source="dto.password")
     })
     User userDtoToUserMongo(UserDto dto);
+
+    @Named(value = "listUserMongoToUserDto")
+    UserDto userMongoToUserDto(User user);
+    @IterableMapping(qualifiedByName = "listUserMongoToUserDto")
+    @Named(value = "mapListUserMongoToUserDto")
+    List<UserDto> listUserMongoToListDto(List<User> users);
+
+    @Named(value = "listUserDtoToUserVm")
+    UserVm userDtoToUserVm(UserDto dto);
+    @IterableMapping(qualifiedByName = "listUserDtoToUserVm")
+    @Named(value = "mapListUserDtoToUserVm")
+    List<UserVm> listUserDtoToUserVm(List<UserDto> dto);
+
 }
