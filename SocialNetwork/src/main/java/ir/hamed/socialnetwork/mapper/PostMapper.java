@@ -1,13 +1,14 @@
 package ir.hamed.socialnetwork.mapper;
 
-import ir.hamed.socialnetwork.models.dtu.PostDto;
-import ir.hamed.socialnetwork.models.dtu.UserDto;
+import ir.hamed.socialnetwork.models.admin.dto.PostReportDto;
+import ir.hamed.socialnetwork.models.admin.dto.PostsReportDto;
+import ir.hamed.socialnetwork.models.admin.vm.PostReportVm;
+import ir.hamed.socialnetwork.models.admin.vm.PostsReportVm;
+import ir.hamed.socialnetwork.models.dto.PostDto;
 import ir.hamed.socialnetwork.models.entity.mongo.Post;
-import ir.hamed.socialnetwork.models.entity.mongo.User;
 import ir.hamed.socialnetwork.models.entity.mysql.PostMysql;
-import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
 import ir.hamed.socialnetwork.models.vm.PostVm;
-import ir.hamed.socialnetwork.models.vm.UserVm;
+import javafx.geometry.Pos;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -37,4 +38,26 @@ public interface PostMapper {
     @Named(value = "mapListPostMongoToPostDto")
     List<PostDto> listPostMongoToPostDto(List<Post> post);
 
+    @Named(value = "listPostMysqlToPostDto")
+    PostsReportDto postMysqlToPostDto(PostMysql post);
+    @IterableMapping(qualifiedByName = "listPostMysqlToPostDto")
+    @Named(value = "mapListPostMysqlToPostDto")
+    List<PostsReportDto> listPostMysqlToPostsReportDto(List<PostMysql> post);
+
+    @Named(value = "postMongoToPostsReportDto")
+    PostsReportDto postMongoToPostsReportDto(Post post);
+    @IterableMapping(qualifiedByName = "postMongoToPostsReportDto")
+    @Named(value = "listPostMongoToPostsReportDto")
+    List<PostsReportDto> listPostMongoToPostsReportDto(List<Post> post);
+
+    @Named(value = "postsReportDtoToPostsReportVm")
+    PostsReportVm postsReportDtoToPostsReportVm(PostsReportDto postsReportDto);
+    @IterableMapping(qualifiedByName = "postsReportDtoToPostsReportVm")
+    @Named(value = "listPostsReportDtoToPostsReportVm")
+    List<PostsReportVm> listPostsReportDtoToPostsReportVm(List<PostsReportDto> postsReportDto);
+
+    PostReportDto postMongoToPostReportDto(Post post);
+    PostReportDto postMysqlToPostReportDto(PostMysql post);
+    PostReportVm postReportDtoToPostReportVm(PostReportDto postReportDto);
+    PostReportDto postReportVmToPostReportDto(PostReportVm postReportVm);
 }

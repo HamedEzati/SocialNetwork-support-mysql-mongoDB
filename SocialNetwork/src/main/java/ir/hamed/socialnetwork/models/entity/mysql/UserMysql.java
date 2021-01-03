@@ -16,7 +16,7 @@ import java.util.Set;
 
 
 @Entity(name = "usersmysql")
-public class UserMysql implements Serializable {
+public class UserMysql{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

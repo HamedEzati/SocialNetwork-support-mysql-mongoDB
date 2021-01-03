@@ -1,7 +1,6 @@
 package ir.hamed.socialnetwork.services;
 
-import ir.hamed.socialnetwork.models.dtu.FollowingDto;
-import ir.hamed.socialnetwork.models.entity.mongo.Following;
+import ir.hamed.socialnetwork.models.dto.FollowingDto;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpSession;

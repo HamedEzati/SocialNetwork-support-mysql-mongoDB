@@ -1,8 +1,7 @@
 package ir.hamed.socialnetwork.services;
 
-import ir.hamed.socialnetwork.models.dtu.PostDto;
+import ir.hamed.socialnetwork.models.dto.PostDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 

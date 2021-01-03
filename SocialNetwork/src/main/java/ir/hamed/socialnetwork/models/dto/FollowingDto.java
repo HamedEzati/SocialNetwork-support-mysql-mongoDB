@@ -1,7 +1,6 @@
-package ir.hamed.socialnetwork.models.dtu;
+package ir.hamed.socialnetwork.models.dto;
 
 public class FollowingDto {
-    private String mainusername;
     private String username;
 
     public FollowingDto(){
@@ -10,14 +9,6 @@ public class FollowingDto {
 
     public FollowingDto(String username) {
         this.username = username;
-    }
-
-    public String getMainusername() {
-        return mainusername;
-    }
-
-    public void setMainusername(String mainusername) {
-        this.mainusername = mainusername;
     }
 
     public String getUsername() {

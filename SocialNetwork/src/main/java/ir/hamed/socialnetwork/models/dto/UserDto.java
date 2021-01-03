@@ -1,7 +1,4 @@
-package ir.hamed.socialnetwork.models.dtu;
-
-import java.util.HashSet;
-import java.util.Set;
+package ir.hamed.socialnetwork.models.dto;
 
 public class UserDto {
 

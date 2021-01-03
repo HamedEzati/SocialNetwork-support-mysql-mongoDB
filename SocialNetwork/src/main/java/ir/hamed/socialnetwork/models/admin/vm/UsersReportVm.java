@@ -1,15 +1,13 @@
-package ir.hamed.socialnetwork.models.vm;
+package ir.hamed.socialnetwork.models.admin.vm;
 
-import ir.hamed.socialnetwork.models.entity.mongo.Following;
-
-public class FollowingVm {
+public class UsersReportVm {
     private String username;
 
-    public FollowingVm(){
+    public UsersReportVm(){
 
     }
 
-    public FollowingVm(String username) {
+    public UsersReportVm(String username) {
         this.username = username;
     }
 

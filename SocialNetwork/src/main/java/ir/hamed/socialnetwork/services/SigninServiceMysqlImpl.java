@@ -1,6 +1,6 @@
 package ir.hamed.socialnetwork.services;
 
-import ir.hamed.socialnetwork.models.dtu.UserDto;
+import ir.hamed.socialnetwork.models.dto.UserDto;
 import ir.hamed.socialnetwork.payload.response.JwtResponse;
 import ir.hamed.socialnetwork.security.mysql.jwt.JwtUtilsMysql;
 import ir.hamed.socialnetwork.security.mysql.service.UserMysqlDetailsImpl;
@@ -12,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;

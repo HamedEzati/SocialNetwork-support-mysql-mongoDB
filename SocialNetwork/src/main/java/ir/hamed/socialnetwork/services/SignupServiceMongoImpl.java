@@ -1,18 +1,15 @@
 package ir.hamed.socialnetwork.services;
 
 import ir.hamed.socialnetwork.mapper.UserMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.UserDto;
+import ir.hamed.socialnetwork.models.dto.UserDto;
 import ir.hamed.socialnetwork.models.entity.ERole;
 import ir.hamed.socialnetwork.models.entity.mongo.Role;
 import ir.hamed.socialnetwork.models.entity.mongo.User;
-import ir.hamed.socialnetwork.models.entity.mysql.RoleMysql;
-import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
 import ir.hamed.socialnetwork.payload.response.ErrorsResponse;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.repository.mongo.RoleMongoRepository;
 import ir.hamed.socialnetwork.repository.mongo.UserMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

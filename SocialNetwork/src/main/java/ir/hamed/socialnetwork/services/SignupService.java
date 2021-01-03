@@ -1,11 +1,9 @@
 package ir.hamed.socialnetwork.services;
 
-import ir.hamed.socialnetwork.models.dtu.UserDto;
-import ir.hamed.socialnetwork.models.vm.UserVm;
+import ir.hamed.socialnetwork.models.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Set;
 
 public interface SignupService {
     public List<String> validationUser(UserDto userDto);

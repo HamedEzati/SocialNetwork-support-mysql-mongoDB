@@ -1,11 +1,8 @@
 package ir.hamed.socialnetwork.mapper;
 
-import ir.hamed.socialnetwork.models.dtu.CommentDto;
-import ir.hamed.socialnetwork.models.dtu.PostDto;
+import ir.hamed.socialnetwork.models.dto.CommentDto;
 import ir.hamed.socialnetwork.models.entity.mysql.CommentMysql;
-import ir.hamed.socialnetwork.models.entity.mysql.PostMysql;
 import ir.hamed.socialnetwork.models.vm.CommentVm;
-import ir.hamed.socialnetwork.models.vm.PostVm;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

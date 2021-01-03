@@ -1,19 +1,20 @@
-package ir.hamed.socialnetwork.models.dtu;
+package ir.hamed.socialnetwork.models.admin.dto;
 
-public class PostDto {
+public class PostReportDto {
     private String id;
     private String username;
     private String title;
     private String description;
+    private String numberOfComment;
 
-    public PostDto(){
+    public PostReportDto(){}
 
-    }
-
-    public PostDto(String id,String title, String description) {
+    public PostReportDto(String id, String username, String title, String description, String numberOfComment) {
         this.id = id;
+        this.username = username;
         this.title = title;
         this.description = description;
+        this.numberOfComment = numberOfComment;
     }
 
     public String getId() {
@@ -46,5 +47,13 @@ public class PostDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNumberOfComment() {
+        return numberOfComment;
+    }
+
+    public void setNumberOfComment(String numberOfComment) {
+        this.numberOfComment = numberOfComment;
     }
 }

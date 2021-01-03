@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.models.dtu;
+package ir.hamed.socialnetwork.models.dto;
 
 public class CommentDto {
     private String postId;

@@ -1,10 +1,9 @@
 package ir.hamed.socialnetwork.services;
 
-import ir.hamed.socialnetwork.models.dtu.UserDto;
+import ir.hamed.socialnetwork.models.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 public interface SigninService {
 

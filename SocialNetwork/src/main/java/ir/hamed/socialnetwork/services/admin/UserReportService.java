@@ -1,12 +1,12 @@
 package ir.hamed.socialnetwork.services.admin;
 
-import ir.hamed.socialnetwork.models.dtu.UserDto;
-import ir.hamed.socialnetwork.models.vm.UserVm;
-import org.springframework.http.ResponseEntity;
+import ir.hamed.socialnetwork.models.admin.dto.UserReportDto;
+import ir.hamed.socialnetwork.models.admin.dto.UsersReportDto;
+import ir.hamed.socialnetwork.models.dto.UserDto;
 
 import java.util.List;
 
 public interface UserReportService {
-    public List<UserDto> getusers();
-    public UserDto selectuser(UserDto userDto);
+    public List<UsersReportDto> getusers();
+    public UserReportDto selectuser(UserReportDto userReportDto);
 }

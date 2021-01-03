@@ -1,6 +1,6 @@
 package ir.hamed.socialnetwork.services;
 
-import ir.hamed.socialnetwork.models.dtu.CommentDto;
+import ir.hamed.socialnetwork.models.dto.CommentDto;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpSession;

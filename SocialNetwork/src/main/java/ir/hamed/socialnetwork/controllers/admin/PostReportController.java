@@ -1,17 +1,18 @@
 package ir.hamed.socialnetwork.controllers.admin;
 
 import ir.hamed.socialnetwork.mapper.PostMapperImpl;
-import ir.hamed.socialnetwork.mapper.UserMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.PostDto;
-import ir.hamed.socialnetwork.models.dtu.UserDto;
+import ir.hamed.socialnetwork.models.admin.dto.PostReportDto;
+import ir.hamed.socialnetwork.models.admin.vm.PostReportVm;
+import ir.hamed.socialnetwork.models.admin.vm.PostsReportVm;
+import ir.hamed.socialnetwork.models.dto.PostDto;
 import ir.hamed.socialnetwork.models.vm.PostVm;
-import ir.hamed.socialnetwork.models.vm.UserVm;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.services.admin.PostReportServiceMongoImpl;
-import ir.hamed.socialnetwork.services.admin.UserReportServiceMongoImpl;
+import ir.hamed.socialnetwork.services.admin.PostReportServiceMysqlImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/test")
+@PreAuthorize("hasRole('ADMIN')")
 public class PostReportController {
     @Value("${mysqldb}")
     private boolean mysqldb;
@@ -31,18 +33,21 @@ public class PostReportController {
     @Autowired(required = false)
     PostReportServiceMongoImpl postReportServiceMongo;
 
+    @Autowired(required = false)
+    PostReportServiceMysqlImpl postReportServiceMysql;
+
 
     PostMapperImpl postMapper = new PostMapperImpl();
 
     @PostMapping("/getposts")
-//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getposts(){
         if(mysqldb){
-
+            List<PostsReportVm> postsReportVm = postMapper.listPostsReportDtoToPostsReportVm(postReportServiceMysql.getposts());
+            return ResponseEntity.ok(postsReportVm);
         }
         if(mongodb){
-            List<PostVm> posts = postMapper.listPostDtoToPostVm(postReportServiceMongo.getposts());
-            return ResponseEntity.ok(posts);
+            List<PostsReportVm> postsReportVm = postMapper.listPostsReportDtoToPostsReportVm(postReportServiceMongo.getposts());
+            return ResponseEntity.ok(postsReportVm);
         }
         return ResponseEntity
                 .badRequest()
@@ -50,15 +55,16 @@ public class PostReportController {
     }
 
     @PostMapping("selectpost")
-//    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> selectpost(@RequestBody PostVm postVm){
-        PostDto postDto = postMapper.PostVmToPostDto(postVm);
+    public ResponseEntity<?> selectpost(@RequestBody PostReportVm postReportVm){
+        PostReportDto postReportDto = postMapper.postReportVmToPostReportDto(postReportVm);
         if(mysqldb){
-
+            PostReportDto resultPostReportDto = postReportServiceMysql.selectpost(postReportDto);
+            PostReportVm resultPostVm = postMapper.postReportDtoToPostReportVm(resultPostReportDto);
+            return ResponseEntity.ok(resultPostVm);
         }
         if(mongodb){
-            PostDto resultPostDto = postReportServiceMongo.selectpost(postDto);
-            PostVm resultPostVm = postMapper.postDtoToPostVm(resultPostDto);
+            PostReportDto resultPostReportDto = postReportServiceMongo.selectpost(postReportDto);
+            PostReportVm resultPostVm = postMapper.postReportDtoToPostReportVm(resultPostReportDto);
             return ResponseEntity.ok(resultPostVm);
         }
         return ResponseEntity

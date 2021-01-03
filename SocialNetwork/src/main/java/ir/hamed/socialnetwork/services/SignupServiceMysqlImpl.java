@@ -1,31 +1,21 @@
 package ir.hamed.socialnetwork.services;
 
-import ir.hamed.socialnetwork.mapper.UserMapper;
 import ir.hamed.socialnetwork.mapper.UserMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.UserDto;
+import ir.hamed.socialnetwork.models.dto.UserDto;
 import ir.hamed.socialnetwork.models.entity.ERole;
 
-import ir.hamed.socialnetwork.models.entity.mongo.Role;
-import ir.hamed.socialnetwork.models.entity.mongo.User;
 import ir.hamed.socialnetwork.models.entity.mysql.RoleMysql;
 
 import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
-import ir.hamed.socialnetwork.models.vm.UserVm;
 import ir.hamed.socialnetwork.payload.response.ErrorsResponse;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
-import ir.hamed.socialnetwork.repository.mongo.UserMongoRepository;
 import ir.hamed.socialnetwork.repository.mysql.RoleMysqlRepository;
 import ir.hamed.socialnetwork.repository.mysql.UserMysqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.HashSet;

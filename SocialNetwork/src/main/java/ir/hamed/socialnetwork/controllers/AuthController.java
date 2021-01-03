@@ -1,9 +1,18 @@
 package ir.hamed.socialnetwork.controllers;
 
 import ir.hamed.socialnetwork.mapper.UserMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.UserDto;
+import ir.hamed.socialnetwork.models.dto.UserDto;
+import ir.hamed.socialnetwork.models.entity.ERole;
+import ir.hamed.socialnetwork.models.entity.mongo.Role;
+import ir.hamed.socialnetwork.models.entity.mongo.User;
+import ir.hamed.socialnetwork.models.entity.mysql.RoleMysql;
+import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
 import ir.hamed.socialnetwork.models.vm.UserVm;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
+import ir.hamed.socialnetwork.repository.mongo.RoleMongoRepository;
+import ir.hamed.socialnetwork.repository.mongo.UserMongoRepository;
+import ir.hamed.socialnetwork.repository.mysql.RoleMysqlRepository;
+import ir.hamed.socialnetwork.repository.mysql.UserMysqlRepository;
 import ir.hamed.socialnetwork.security.mysql.jwt.JwtUtilsMysql;
 import ir.hamed.socialnetwork.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +24,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)

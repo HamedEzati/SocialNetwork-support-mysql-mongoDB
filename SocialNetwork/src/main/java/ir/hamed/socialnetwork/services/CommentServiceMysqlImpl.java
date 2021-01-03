@@ -1,8 +1,7 @@
 package ir.hamed.socialnetwork.services;
 
 import ir.hamed.socialnetwork.mapper.CommentMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.CommentDto;
-import ir.hamed.socialnetwork.models.entity.mongo.Comment;
+import ir.hamed.socialnetwork.models.dto.CommentDto;
 import ir.hamed.socialnetwork.models.entity.mysql.CommentMysql;
 import ir.hamed.socialnetwork.models.entity.mysql.PostMysql;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;

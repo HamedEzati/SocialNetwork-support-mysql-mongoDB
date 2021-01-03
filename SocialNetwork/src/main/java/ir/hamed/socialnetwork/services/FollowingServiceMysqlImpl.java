@@ -1,7 +1,7 @@
 package ir.hamed.socialnetwork.services;
 
 import ir.hamed.socialnetwork.mapper.FollowingMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.FollowingDto;
+import ir.hamed.socialnetwork.models.dto.FollowingDto;
 import ir.hamed.socialnetwork.models.entity.mysql.FollowingMysql;
 import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;

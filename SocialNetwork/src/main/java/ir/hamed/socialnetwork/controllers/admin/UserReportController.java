@@ -1,7 +1,10 @@
 package ir.hamed.socialnetwork.controllers.admin;
 
 import ir.hamed.socialnetwork.mapper.UserMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.UserDto;
+import ir.hamed.socialnetwork.models.admin.dto.UserReportDto;
+import ir.hamed.socialnetwork.models.admin.vm.UserReportVm;
+import ir.hamed.socialnetwork.models.admin.vm.UsersReportVm;
+import ir.hamed.socialnetwork.models.dto.UserDto;
 import ir.hamed.socialnetwork.models.vm.UserVm;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.services.admin.UserReportServiceMongoImpl;
@@ -19,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/test")
+@PreAuthorize("hasRole('ADMIN')")
 public class UserReportController {
     @Value("${mysqldb}")
     private boolean mysqldb;
@@ -29,18 +33,20 @@ public class UserReportController {
     @Autowired(required = false)
     UserReportServiceMongoImpl userReportServiceMongo;
 
+    @Autowired(required = false)
+    UserReportServiceMysqlImpl userReportServiceMysql;
 
     UserMapperImpl userMapper = new UserMapperImpl();
 
     @PostMapping("/getusers")
-//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getusers(){
         if(mysqldb){
-
+            List<UsersReportVm> usersReportVm = userMapper.listUsersReportDtoToUsersReportVm(userReportServiceMysql.getusers());
+            return ResponseEntity.ok(usersReportVm);
         }
         if(mongodb){
-            List<UserVm> usersVm = userMapper.listUserDtoToUserVm(userReportServiceMongo.getusers());
-            return ResponseEntity.ok(usersVm);
+            List<UsersReportVm> usersReportVm = userMapper.listUsersReportDtoToUsersReportVm(userReportServiceMongo.getusers());
+            return ResponseEntity.ok(usersReportVm);
         }
         return ResponseEntity
                 .badRequest()
@@ -48,16 +54,17 @@ public class UserReportController {
     }
 
     @PostMapping("selectuser")
-//    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> selectuser(@RequestBody UserVm userVm){
-        UserDto userDto = userMapper.UserVmToUserDto(userVm);
+    public ResponseEntity<?> selectuser(@RequestBody UserReportVm userReportVm){
+        UserReportDto userReportDto = userMapper.userReportVmToUserReportDto(userReportVm);
         if(mysqldb){
-
+            UserReportDto resultUserReportDto = userReportServiceMysql.selectuser(userReportDto);
+            UserReportVm resultUserReportVm = userMapper.userReportDtoToUserReportVm(resultUserReportDto);
+            return ResponseEntity.ok(resultUserReportVm);
         }
         if(mongodb){
-            UserDto resultUserDto = userReportServiceMongo.selectuser(userDto);
-            UserVm resultUserVm = userMapper.userDtoToUserVm(resultUserDto);
-            return ResponseEntity.ok(resultUserVm);
+            UserReportDto resultUserReportDto = userReportServiceMongo.selectuser(userReportDto);
+            UserReportVm resultUserReportVm = userMapper.userReportDtoToUserReportVm(resultUserReportDto);
+            return ResponseEntity.ok(resultUserReportVm);
         }
         return ResponseEntity
                 .badRequest()

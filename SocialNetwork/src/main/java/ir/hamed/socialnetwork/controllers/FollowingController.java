@@ -1,7 +1,7 @@
 package ir.hamed.socialnetwork.controllers;
 
 import ir.hamed.socialnetwork.mapper.FollowingMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.FollowingDto;
+import ir.hamed.socialnetwork.models.dto.FollowingDto;
 import ir.hamed.socialnetwork.models.vm.FollowingVm;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.services.FollowingServiceMongoImpl;

@@ -1,17 +1,11 @@
 package ir.hamed.socialnetwork.services;
 
-import ir.hamed.socialnetwork.mapper.PostMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.PostDto;
+import ir.hamed.socialnetwork.models.dto.PostDto;
 import ir.hamed.socialnetwork.models.entity.mongo.Post;
 import ir.hamed.socialnetwork.models.entity.mongo.User;
-import ir.hamed.socialnetwork.models.entity.mysql.PostMysql;
-import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.repository.mongo.UserMongoRepository;
-import ir.hamed.socialnetwork.repository.mysql.PostMysqlRepository;
-import ir.hamed.socialnetwork.repository.mysql.UserMysqlRepository;
 import ir.hamed.socialnetwork.security.mongo.jwt.JwtUtilsMongo;
-import ir.hamed.socialnetwork.security.mysql.jwt.JwtUtilsMysql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

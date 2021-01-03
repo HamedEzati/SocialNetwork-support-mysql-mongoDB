@@ -1,7 +1,10 @@
 package ir.hamed.socialnetwork.controllers;
 
 import ir.hamed.socialnetwork.mapper.CommentMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.CommentDto;
+import ir.hamed.socialnetwork.models.dto.CommentDto;
+import ir.hamed.socialnetwork.models.entity.ERole;
+import ir.hamed.socialnetwork.models.entity.mongo.Role;
+import ir.hamed.socialnetwork.models.entity.mongo.User;
 import ir.hamed.socialnetwork.models.vm.CommentVm;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.repository.mysql.CommentMysqlRepository;
@@ -15,6 +18,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/test")

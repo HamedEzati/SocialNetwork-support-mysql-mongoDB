@@ -1,14 +1,15 @@
-package ir.hamed.socialnetwork.models.vm;
+package ir.hamed.socialnetwork.models.dto;
 
-public class PostVm {
+public class PostDto {
     private String id;
     private String title;
     private String description;
 
-    public PostVm(){
+    public PostDto(){
 
     }
-    public PostVm(String id,String title, String description) {
+
+    public PostDto(String id,String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;

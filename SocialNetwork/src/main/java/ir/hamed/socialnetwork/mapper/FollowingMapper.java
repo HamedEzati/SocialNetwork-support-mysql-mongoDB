@@ -1,15 +1,14 @@
 package ir.hamed.socialnetwork.mapper;
 
-import ir.hamed.socialnetwork.models.dtu.FollowingDto;
-import ir.hamed.socialnetwork.models.dtu.PostDto;
+import ir.hamed.socialnetwork.models.admin.dto.FollowingsReportDto;
+import ir.hamed.socialnetwork.models.admin.vm.FollowingsReportVm;
+import ir.hamed.socialnetwork.models.dto.FollowingDto;
 import ir.hamed.socialnetwork.models.entity.mongo.Following;
 import ir.hamed.socialnetwork.models.entity.mysql.FollowingMysql;
-import ir.hamed.socialnetwork.models.entity.mysql.PostMysql;
 import ir.hamed.socialnetwork.models.vm.FollowingVm;
-import ir.hamed.socialnetwork.models.vm.PostVm;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper
 public interface FollowingMapper {
@@ -21,4 +20,10 @@ public interface FollowingMapper {
             @Mapping(target="username", source="dto.username")
     })
     FollowingMysql followingDtoToFollowingMysql(FollowingDto dto);
+
+    @Named(value = "followingsReportDtoToFollowingReportVm")
+    FollowingsReportVm followingsReportDtoToFollowingsReportVm(FollowingsReportDto followingsReportDto);
+    @IterableMapping(qualifiedByName = "followingsReportDtoToFollowingReportVm")
+    @Named(value = "listFollowingsReportDtoToFollowingReportVm")
+    List<FollowingsReportVm> listFollowingsReportDtoToFollowingsReportVm(List<FollowingsReportDto> followingsReportDto);
 }

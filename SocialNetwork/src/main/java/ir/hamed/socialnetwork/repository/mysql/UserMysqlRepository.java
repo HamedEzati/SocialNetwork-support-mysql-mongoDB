@@ -1,9 +1,7 @@
 package ir.hamed.socialnetwork.repository.mysql;
 
 
-import ir.hamed.socialnetwork.models.dtu.UserDto;
 import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

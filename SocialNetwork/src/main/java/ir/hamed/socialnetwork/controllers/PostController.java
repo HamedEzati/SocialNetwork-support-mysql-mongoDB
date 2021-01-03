@@ -1,6 +1,6 @@
 package ir.hamed.socialnetwork.controllers;
 import ir.hamed.socialnetwork.mapper.PostMapperImpl;
-import ir.hamed.socialnetwork.models.dtu.PostDto;
+import ir.hamed.socialnetwork.models.dto.PostDto;
 import ir.hamed.socialnetwork.models.vm.PostVm;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.services.PostServiceMongoImpl;
