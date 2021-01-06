@@ -3,8 +3,10 @@ package ir.hamed.socialnetwork.services;
 import ir.hamed.socialnetwork.models.dto.FollowingDto;
 import ir.hamed.socialnetwork.models.entity.mongo.Following;
 import ir.hamed.socialnetwork.models.entity.mongo.User;
+import ir.hamed.socialnetwork.models.neo4j.FollowingNeo4j;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.repository.mongo.UserMongoRepository;
+import ir.hamed.socialnetwork.repository.neo4j.FollowingNeo4jRepository;
 import ir.hamed.socialnetwork.security.mongo.jwt.JwtUtilsMongo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ public class FollowingServiceMongoImpl implements FollowingService {
     UserMongoRepository userMongoRepository;
     @Autowired(required = false)
     JwtUtilsMongo jwtUtilsMongo;
+    @Autowired(required = false)
+    FollowingNeo4jRepository followingNeo4jRepository;
     @Override
     public ResponseEntity<?> following(FollowingDto followingDto, String authorization, HttpSession session) {
 
@@ -41,7 +45,17 @@ public class FollowingServiceMongoImpl implements FollowingService {
 
         user.setNewFollowing(following);
         userMongoRepository.save(user);
-
+        savedInNeo4j(user,following);
         return ResponseEntity.ok(new MessageResponse("Following: "+followingDto.getUsername()));
+    }
+
+    private void savedInNeo4j(User user,Following following){
+        FollowingNeo4j followingNeo4j = followingNeo4jRepository.findByUsername(user.getUsername())
+                .orElseThrow(() -> new RuntimeException("Error: user is not found."));
+        FollowingNeo4j followed = followingNeo4jRepository.findByUsername(following.getUsername())
+                .orElseThrow(() -> new RuntimeException("Error: user is not found."));
+        followingNeo4j.setNewFollowing(followed);
+        followingNeo4jRepository.save(followingNeo4j);
+        
     }
 }

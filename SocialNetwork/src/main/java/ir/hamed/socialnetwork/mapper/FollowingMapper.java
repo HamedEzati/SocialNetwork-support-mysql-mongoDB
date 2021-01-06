@@ -1,6 +1,8 @@
 package ir.hamed.socialnetwork.mapper;
 
+import ir.hamed.socialnetwork.models.admin.dto.FollowingPathReportDto;
 import ir.hamed.socialnetwork.models.admin.dto.FollowingsReportDto;
+import ir.hamed.socialnetwork.models.admin.vm.FollowingPathReportVm;
 import ir.hamed.socialnetwork.models.admin.vm.FollowingsReportVm;
 import ir.hamed.socialnetwork.models.dto.FollowingDto;
 import ir.hamed.socialnetwork.models.entity.mongo.Following;
@@ -26,4 +28,7 @@ public interface FollowingMapper {
     @IterableMapping(qualifiedByName = "followingsReportDtoToFollowingReportVm")
     @Named(value = "listFollowingsReportDtoToFollowingReportVm")
     List<FollowingsReportVm> listFollowingsReportDtoToFollowingsReportVm(List<FollowingsReportDto> followingsReportDto);
+
+    FollowingPathReportDto followingPathReportVmToFollowingPathReportDto(FollowingPathReportVm followingPathReportVm);
+    FollowingPathReportVm followingPathReportDtoToFollowingPathReportVm(FollowingPathReportDto followingPathReportDto);
 }

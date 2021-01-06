@@ -4,13 +4,16 @@ import ir.hamed.socialnetwork.mapper.UserMapperImpl;
 import ir.hamed.socialnetwork.models.dto.UserDto;
 import ir.hamed.socialnetwork.models.entity.ERole;
 
+import ir.hamed.socialnetwork.models.entity.mongo.User;
 import ir.hamed.socialnetwork.models.entity.mysql.RoleMysql;
 
 import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
+import ir.hamed.socialnetwork.models.neo4j.FollowingNeo4j;
 import ir.hamed.socialnetwork.payload.response.ErrorsResponse;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.repository.mysql.RoleMysqlRepository;
 import ir.hamed.socialnetwork.repository.mysql.UserMysqlRepository;
+import ir.hamed.socialnetwork.repository.neo4j.FollowingNeo4jRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +35,8 @@ public class SignupServiceMysqlImpl implements SignupService {
     UserMysqlRepository userMysqlRepository;
     @Autowired(required = false)
     RoleMysqlRepository roleMysqlRepository;
+    @Autowired(required = false)
+    FollowingNeo4jRepository followingNeo4jRepository;
     @Autowired(required = false)
     PasswordEncoder encoder;
 
@@ -86,6 +91,12 @@ public class SignupServiceMysqlImpl implements SignupService {
         userMysql.setRoles(roles);
         userMysql.setPassword(encoder.encode(userMysql.getPassword()));
         userMysqlRepository.save(userMysql);
+        savedInNeo4j(userMysql);
         return ResponseEntity.ok(new MessageResponse("Account registered successfully!"));
+    }
+
+    private void savedInNeo4j(UserMysql userMysql){
+        FollowingNeo4j followingNeo4j = new FollowingNeo4j(userMysql.getUsername());
+        followingNeo4jRepository.save(followingNeo4j);
     }
 }
