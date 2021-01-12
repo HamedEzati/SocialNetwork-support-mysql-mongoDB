@@ -61,8 +61,8 @@ body:
 "description":"post description"
 }
 
-header:
-key:Authorization  value:Bearer security key
+Bearer token:
+access token
 ```
 ### Send comment
 http://localhost:8080/api/test/sendcomment
@@ -73,8 +73,8 @@ body:
 "text":"comment text"
 }
 
-header:
-key:Authorization  value:Bearer security key
+Bearer token:
+access token
 ```
 ### Following
 http://localhost:8080/api/test/following
@@ -84,11 +84,14 @@ body:
     "username":"username to follow"
 }
 
-header:
-key:Authorization  value:Bearer security key
+Bearer token:
+access token
 ```
 ## Admin Apis
-
+```bash
+Bearer token:
+access token
+```
 ### http://localhost:8080/api/test/getusers
 Show all users.
 
@@ -99,11 +102,18 @@ body:
     "username":"username to show details"
 }
 
+Bearer token:
+access token
+
 response:show username details. 
 ```
 
 ### http://localhost:8080/api/test/getposts
 Show all posts.
+```bash
+Bearer token:
+access token
+```
 
 ### http://localhost:8080/api/test/selectpost
 ```bash
@@ -112,11 +122,18 @@ body:
     "id":"id of post to show details"
 }
 
+Bearer token:
+access token
+
 response:show post details. 
 ```
 
 ### http://localhost:8080/api/test/getfollowings
 Get followings report.
+```bash
+Bearer token:
+access token
+```
 
 ### http://localhost:8080/api/auth/signupbyadmin
 Signup user by admin
@@ -126,7 +143,8 @@ body:
    "username":"your username",
    "email":"your email",
    "password":"your password"
-}
+}Bearer token:
+access token
 ```
 
 ### http://localhost:8080/api/test/getfollowingpath
@@ -137,9 +155,11 @@ body:
    "firstUsername":"first",
    "secondUsername":"second"
 }
+Bearer token:
+access token
 ```
 
-### http://localhost:8080/api/test/getfollowingpath
+### http://localhost:8080/oauth/token
 Get token in Oauth(jwt access token) mode.
 ```bash
 x-www-form-urlencoded:
