@@ -1,9 +1,9 @@
-package ir.hamed.socialnetwork.security.mongo.jwt;
+package ir.hamed.socialnetwork.security.jwt.mongo.jwt;
 
 import java.util.Date;
 
 
-import ir.hamed.socialnetwork.security.mongo.service.UserMongoDetailsImpl;
+import ir.hamed.socialnetwork.security.jwt.mongo.service.UserMongoDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.*;
 
 @Component
-@ConditionalOnProperty(name = "mongodb")
+@ConditionalOnProperty(name = {"mongodb","jwt"})
 public class JwtUtilsMongo {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtilsMongo.class);
 

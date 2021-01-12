@@ -1,8 +1,8 @@
-package ir.hamed.socialnetwork.security.mysql.jwt;
+package ir.hamed.socialnetwork.security.jwt.mysql.jwt;
 
 import java.util.Date;
 
-import ir.hamed.socialnetwork.security.mysql.service.UserMysqlDetailsImpl;
+import ir.hamed.socialnetwork.security.jwt.mysql.service.UserMysqlDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.*;
 
 @Component
-@ConditionalOnProperty(name = "mysqldb")
+@ConditionalOnProperty(name = {"mysqldb","jwt"})
 public class JwtUtilsMysql {
 	private static final Logger logger = LoggerFactory.getLogger(JwtUtilsMysql.class);
 

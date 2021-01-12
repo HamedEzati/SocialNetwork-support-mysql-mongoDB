@@ -7,7 +7,7 @@ import ir.hamed.socialnetwork.models.neo4j.FollowingNeo4j;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.repository.mongo.UserMongoRepository;
 import ir.hamed.socialnetwork.repository.neo4j.FollowingNeo4jRepository;
-import ir.hamed.socialnetwork.security.mongo.jwt.JwtUtilsMongo;
+import ir.hamed.socialnetwork.security.jwt.mongo.jwt.JwtUtilsMongo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

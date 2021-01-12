@@ -37,6 +37,7 @@ public class UserMysql{
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "usersmysql_rolesmysql",
             joinColumns = @JoinColumn(name = "usersmysql_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "rolesmysql_id",referencedColumnName = "id"))

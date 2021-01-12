@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.mongo.jwt;
+package ir.hamed.socialnetwork.security.jwt.mongo.jwt;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import ir.hamed.socialnetwork.security.mongo.service.UserMongoDetailsServiceImpl;
+import ir.hamed.socialnetwork.security.jwt.mongo.service.UserMongoDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-@ConditionalOnProperty(name = "mongodb")
+@ConditionalOnProperty(name = {"mongodb","jwt"})
 public class AuthTokenFilterMongo extends OncePerRequestFilter {
     @Autowired(required = false)
     private JwtUtilsMongo jwtUtilsMongo;

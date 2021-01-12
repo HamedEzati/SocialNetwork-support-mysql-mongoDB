@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.mysql.service;
+package ir.hamed.socialnetwork.security.jwt.mysql.service;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-@ConditionalOnProperty(name = "mysqldb")
+@ConditionalOnProperty(name = {"mysqldb","jwt"})
 public class UserMysqlDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
@@ -36,12 +36,6 @@ public class UserMysqlDetailsImpl implements UserDetails {
 	}
 
 	public static UserMysqlDetailsImpl build(UserMysql user) {
-
-//		Set<RoleMysql> roless = new HashSet<>();
-//		roless.add(new RoleMysql(ERole.ROLE_USER));
-//		List<GrantedAuthority> authorities = roless.stream()
-//				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
-//				.collect(Collectors.toList());
 
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name()))

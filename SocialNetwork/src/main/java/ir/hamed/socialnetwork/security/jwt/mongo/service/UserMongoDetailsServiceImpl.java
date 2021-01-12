@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.mongo.service;
+package ir.hamed.socialnetwork.security.jwt.mongo.service;
 
 
 import ir.hamed.socialnetwork.models.entity.mongo.User;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@ConditionalOnProperty(name = "mongodb")
+@ConditionalOnProperty(name = {"mongodb","jwt"})
 public class UserMongoDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserMongoRepository userMongoRepository;

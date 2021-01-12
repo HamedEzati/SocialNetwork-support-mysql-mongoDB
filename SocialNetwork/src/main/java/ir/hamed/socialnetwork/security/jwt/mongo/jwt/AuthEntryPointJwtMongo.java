@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.mongo.jwt;
+package ir.hamed.socialnetwork.security.jwt.mongo.jwt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-@ConditionalOnProperty(name = "mongodb")
+@ConditionalOnProperty(name = {"mongodb","jwt"})
 public class AuthEntryPointJwtMongo implements AuthenticationEntryPoint {
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwtMongo.class);

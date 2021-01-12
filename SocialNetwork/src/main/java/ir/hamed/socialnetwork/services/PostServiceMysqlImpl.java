@@ -7,7 +7,7 @@ import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
 import ir.hamed.socialnetwork.repository.mysql.PostMysqlRepository;
 import ir.hamed.socialnetwork.repository.mysql.UserMysqlRepository;
-import ir.hamed.socialnetwork.security.mysql.jwt.JwtUtilsMysql;
+import ir.hamed.socialnetwork.security.jwt.mysql.jwt.JwtUtilsMysql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

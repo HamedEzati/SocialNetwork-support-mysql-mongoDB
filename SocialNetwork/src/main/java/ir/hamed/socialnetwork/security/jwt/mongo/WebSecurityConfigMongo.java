@@ -1,9 +1,9 @@
-package ir.hamed.socialnetwork.security.mongo;
+package ir.hamed.socialnetwork.security.jwt.mongo;
 
 
-import ir.hamed.socialnetwork.security.mongo.jwt.AuthEntryPointJwtMongo;
-import ir.hamed.socialnetwork.security.mongo.jwt.AuthTokenFilterMongo;
-import ir.hamed.socialnetwork.security.mongo.service.UserMongoDetailsServiceImpl;
+import ir.hamed.socialnetwork.security.jwt.mongo.jwt.AuthEntryPointJwtMongo;
+import ir.hamed.socialnetwork.security.jwt.mongo.jwt.AuthTokenFilterMongo;
+import ir.hamed.socialnetwork.security.jwt.mongo.service.UserMongoDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 		// securedEnabled = true,
 		// jsr250Enabled = true,
 		prePostEnabled = true)
-@ConditionalOnProperty(name = "mongodb")
+@ConditionalOnProperty(name = {"mongodb","jwt"})
 public class WebSecurityConfigMongo extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserMongoDetailsServiceImpl userMongoDetailsService;
@@ -62,7 +62,7 @@ public class WebSecurityConfigMongo extends WebSecurityConfigurerAdapter {
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
 			.antMatchers("/api/test/**").permitAll()
 			.anyRequest().authenticated();
-
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
+
 }

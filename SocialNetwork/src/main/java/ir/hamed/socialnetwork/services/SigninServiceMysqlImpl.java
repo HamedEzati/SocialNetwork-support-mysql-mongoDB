@@ -2,8 +2,8 @@ package ir.hamed.socialnetwork.services;
 
 import ir.hamed.socialnetwork.models.dto.UserDto;
 import ir.hamed.socialnetwork.payload.response.JwtResponse;
-import ir.hamed.socialnetwork.security.mysql.jwt.JwtUtilsMysql;
-import ir.hamed.socialnetwork.security.mysql.service.UserMysqlDetailsImpl;
+import ir.hamed.socialnetwork.security.jwt.mysql.jwt.JwtUtilsMysql;
+import ir.hamed.socialnetwork.security.jwt.mysql.service.UserMysqlDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;

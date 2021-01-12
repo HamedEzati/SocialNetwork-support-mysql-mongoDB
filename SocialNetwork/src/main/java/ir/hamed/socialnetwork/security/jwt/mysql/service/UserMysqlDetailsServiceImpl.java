@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.mysql.service;
+package ir.hamed.socialnetwork.security.jwt.mysql.service;
 
 import ir.hamed.socialnetwork.models.entity.mysql.UserMysql;
 import ir.hamed.socialnetwork.repository.mysql.UserMysqlRepository;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-@ConditionalOnProperty(name = "mysqldb")
+@ConditionalOnProperty(name = {"mysqldb","jwt"})
 public class UserMysqlDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	UserMysqlRepository userMysqlRepository;

@@ -1,9 +1,9 @@
-package ir.hamed.socialnetwork.security.mysql;
+package ir.hamed.socialnetwork.security.jwt.mysql;
 
 
-import ir.hamed.socialnetwork.security.mysql.jwt.AuthEntryPointJwtMysql;
-import ir.hamed.socialnetwork.security.mysql.jwt.AuthTokenFilterMysql;
-import ir.hamed.socialnetwork.security.mysql.service.UserMysqlDetailsServiceImpl;
+import ir.hamed.socialnetwork.security.jwt.mysql.jwt.AuthEntryPointJwtMysql;
+import ir.hamed.socialnetwork.security.jwt.mysql.jwt.AuthTokenFilterMysql;
+import ir.hamed.socialnetwork.security.jwt.mysql.service.UserMysqlDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 		// jsr250Enabled = true,
 		prePostEnabled = true)
 @ComponentScan("ir.hamed.socialnetwork")
-@ConditionalOnProperty(name = "mysqldb")
+@ConditionalOnProperty(name = {"mysqldb","jwt"})
 public class WebSecurityConfigMysql extends WebSecurityConfigurerAdapter {
 	@Autowired
     UserMysqlDetailsServiceImpl userMysqlDetailsService;

@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.mysql.jwt;
+package ir.hamed.socialnetwork.security.jwt.mysql.jwt;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ir.hamed.socialnetwork.security.mysql.service.UserMysqlDetailsServiceImpl;
+import ir.hamed.socialnetwork.security.jwt.mysql.service.UserMysqlDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-@ConditionalOnProperty(name = "mysqldb")
+@ConditionalOnProperty(name = {"mysqldb","jwt"})
 public class AuthTokenFilterMysql extends OncePerRequestFilter {
   @Autowired(required = false)
   private JwtUtilsMysql jwtUtilsMysql;

@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.mongo.service;
+package ir.hamed.socialnetwork.security.jwt.mongo.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import ir.hamed.socialnetwork.models.entity.mongo.User;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@ConditionalOnProperty(name = "mongodb")
+@ConditionalOnProperty(name = {"mongodb","jwt"})
 public class UserMongoDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 

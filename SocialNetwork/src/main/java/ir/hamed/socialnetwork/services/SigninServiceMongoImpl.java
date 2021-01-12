@@ -2,8 +2,8 @@ package ir.hamed.socialnetwork.services;
 
 import ir.hamed.socialnetwork.models.dto.UserDto;
 import ir.hamed.socialnetwork.payload.response.JwtResponse;
-import ir.hamed.socialnetwork.security.mongo.jwt.JwtUtilsMongo;
-import ir.hamed.socialnetwork.security.mongo.service.UserMongoDetailsImpl;
+import ir.hamed.socialnetwork.security.jwt.mongo.jwt.JwtUtilsMongo;
+import ir.hamed.socialnetwork.security.jwt.mongo.service.UserMongoDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,6 +31,7 @@ public class SigninServiceMongoImpl implements SigninService {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         String jwt = jwtUtilsMongo.generateJwtToken(authentication);
 
         UserMongoDetailsImpl userDetails = (UserMongoDetailsImpl) authentication.getPrincipal();

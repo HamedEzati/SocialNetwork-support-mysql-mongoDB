@@ -15,6 +15,9 @@ import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -30,6 +33,8 @@ import javax.sql.DataSource;
 
 })
 @EnableNeo4jRepositories(basePackageClasses=FollowingNeo4jRepository.class)
+@EnableAuthorizationServer
+@EnableResourceServer
 public class SocialnetworkApplication {
 
     public static void main(String[] args) {

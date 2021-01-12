@@ -5,7 +5,7 @@ import ir.hamed.socialnetwork.mapper.UserMapperImpl;
 import ir.hamed.socialnetwork.models.dto.UserDto;
 import ir.hamed.socialnetwork.models.vm.UserVm;
 import ir.hamed.socialnetwork.payload.response.MessageResponse;
-import ir.hamed.socialnetwork.security.mysql.jwt.JwtUtilsMysql;
+import ir.hamed.socialnetwork.security.jwt.mysql.jwt.JwtUtilsMysql;
 import ir.hamed.socialnetwork.services.SigninServiceMongoImpl;
 import ir.hamed.socialnetwork.services.SigninServiceMysqlImpl;
 import ir.hamed.socialnetwork.services.SignupServiceMongoImpl;

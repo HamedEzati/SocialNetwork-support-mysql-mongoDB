@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.mysql.jwt;
+package ir.hamed.socialnetwork.security.jwt.mysql.jwt;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConditionalOnProperty(name = "mysqldb")
+@ConditionalOnProperty(name = {"mysqldb","jwt"})
 public class AuthEntryPointJwtMysql implements AuthenticationEntryPoint {
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwtMysql.class);
