@@ -1,5 +1,5 @@
 # SocialNetwork-support-mysql-mongoDB
-this project support two database.
+This project support two database.
 you can change database in properties.
 * Mysql
 * MongoDB
@@ -84,3 +84,6 @@ body:
 header:
 key:Authorization  value:Bearer security key
 ```
+## notice
+Session timeout set 1 Minutes.
+You can change it in properties file.
