@@ -1,10 +1,13 @@
 # SocialNetwork-support-mysql-mongoDB
-This project support two database.
-you can change database in properties.
+This project have multi feature that you can on/off in properties.
+Example: you can change database in properties.
 * Mysql
 * MongoDB
+* Neo4j
 * Redis session
-* jwt
+* Jwt
+* Oauth2
+* Oauth2(jwt access token)
 * MapStruct
 
 ## Requirements
@@ -84,6 +87,72 @@ body:
 header:
 key:Authorization  value:Bearer security key
 ```
-## notice
-Session timeout set 1 Minutes.
-You can change it in properties file.
+## Admin Apis
+
+### http://localhost:8080/api/test/getusers
+Show all users.
+
+### http://localhost:8080/api/test/selectuser
+```bash
+body:
+{
+    "username":"username to show details"
+}
+
+response:show username details. 
+```
+
+### http://localhost:8080/api/test/getposts
+Show all posts.
+
+### http://localhost:8080/api/test/selectpost
+```bash
+body:
+{
+    "id":"id of post to show details"
+}
+
+response:show post details. 
+```
+
+### http://localhost:8080/api/test/getfollowings
+Get followings report.
+
+### http://localhost:8080/api/auth/signupbyadmin
+Signup user by admin
+```bash
+body:
+{
+   "username":"your username",
+   "email":"your email",
+   "password":"your password"
+}
+```
+
+### http://localhost:8080/api/test/getfollowingpath
+Get shortest following path.
+```bash
+body:
+{
+   "firstUsername":"first",
+   "secondUsername":"second"
+}
+```
+
+### http://localhost:8080/api/test/getfollowingpath
+Get token in Oauth(jwt access token) mode.
+```bash
+x-www-form-urlencoded:
+
+grant_type
+username
+password
+
+Basic Auth:
+
+Username(client id): web-app
+Password(client secret): web-app-secret
+```
+
+
+
