@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.oauthjwt;
+package ir.hamed.socialnetwork.security.oauthjwt.mysql;
 
 
 import ir.hamed.socialnetwork.models.entity.mysql.RoleMysql;

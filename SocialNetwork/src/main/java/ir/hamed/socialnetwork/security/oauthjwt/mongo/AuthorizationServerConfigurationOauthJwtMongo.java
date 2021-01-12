@@ -1,13 +1,11 @@
-package ir.hamed.socialnetwork.security.oauthjwt;
+package ir.hamed.socialnetwork.security.oauthjwt.mongo;
 
-import ir.hamed.socialnetwork.security.oauth.mysql.CustomUserDetailsServiceMysql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -17,11 +15,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
-@ConditionalOnProperty(name = {"oauthjwt","mysqldb"})
-public class AuthorizationServerConfigurationOauthJwtMysql extends AuthorizationServerConfigurerAdapter {
+@ConditionalOnProperty(name = {"oauthjwt","mongodb"})
+public class AuthorizationServerConfigurationOauthJwtMongo extends AuthorizationServerConfigurerAdapter {
     @Value("${client-id}")
     private String clientid;
     @Value("${client-secret}")
@@ -30,15 +27,11 @@ public class AuthorizationServerConfigurationOauthJwtMysql extends Authorization
     private Integer accessTokenExpire;
     @Value("${refresh-token-expire}")
     private Integer refreshTokenExpire;
-    @Autowired
+    @Autowired(required = false)
     private PasswordEncoder passwordEncoder;
-    @Autowired
+    @Autowired(required = false)
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
-
-    @Autowired(required = false)
-    private CustomUserDetailsServiceMysql userDetailsService;
-
     @Bean
     public JwtAccessTokenConverter tokenEnhancer() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();

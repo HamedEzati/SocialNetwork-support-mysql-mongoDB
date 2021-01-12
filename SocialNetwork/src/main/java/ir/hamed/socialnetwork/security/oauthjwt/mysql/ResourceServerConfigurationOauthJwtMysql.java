@@ -1,4 +1,4 @@
-package ir.hamed.socialnetwork.security.oauthjwt;
+package ir.hamed.socialnetwork.security.oauthjwt.mysql;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
